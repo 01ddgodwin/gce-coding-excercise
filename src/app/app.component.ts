@@ -31,20 +31,14 @@ export class AppComponent {
       this.yearInput = sessionStorage.getItem('yearInput');
     }
 
+    // When page is loaded this checks to see if any sessionStorage variables are filled
+    // If not, then it will display the current date
     if (sessionStorage.getItem("selectedMonth") === null && sessionStorage.getItem("selectedDay") === null && sessionStorage.getItem("yearInput") === null) {
       this.dateDifference = (this.currentDate.getTime() - this.currentDate.getTime()) / (1000 * 3600 * 24)
-      console.log("This is NaN")
-    } else {
-      console.log("This is not null")
-      console.log(this.dateDifference)
-      console.log(this.date1)
     }
-
-    console.log(this.selectedDay)
-
   }
 
-  //Current date split into seperate month, day, and year
+  //Create current date then split into seperate month, day, and year
   currentDate = new Date();
   currentMonthName = this.currentDate.toLocaleString('en-us', {
     month: 'long',
@@ -55,26 +49,25 @@ export class AppComponent {
 
   // Selected Inputs
   selectedMonth = sessionStorage.getItem('selectedMonth');
-
   selectedDay = sessionStorage.getItem('selectedDay');
-
   yearInput = sessionStorage.getItem('yearInput');
 
   //Combined all selected inputs into one date
   selectedDate = this.selectedMonth + '/' + this.selectedDay + '/' + this.yearInput;
 
   newSelectedDate: string = this.selectedDate;
-  date1: Date = new Date(this.selectedDate);
-  dateDifference: number = (this.date1.getTime() - this.currentDate.getTime()) / (1000 * 3600 * 24) + 1;
+  date: Date = new Date(this.selectedDate);
+  dateDifference: number = (this.date.getTime() - this.currentDate.getTime()) / (1000 * 3600 * 24) + 1;
 
+  // When the inputs change, this function will run updating up the variables
   updateDate() {
     this.newSelectedDate = this.selectedMonth + '/' + this.selectedDay + '/' + this.yearInput;
-    console.log(this.newSelectedDate);
+    this.date = new Date(this.newSelectedDate);
 
-    this.date1 = new Date(this.newSelectedDate);
+    // Get the difference between two dates
+    this.dateDifference = (this.date.getTime() - this.currentDate.getTime()) / (1000 * 3600 * 24) + 1;
 
-    //Get the difference between two dates
-    this.dateDifference = (this.date1.getTime() - this.currentDate.getTime()) / (1000 * 3600 * 24) + 1;
+    // Gets the variables that changes and stores them in sessionStorage
     sessionStorage.setItem('selectedMonth', String(this.selectedMonth));
     sessionStorage.setItem('selectedDay', String(this.selectedDay));
     sessionStorage.setItem('yearInput', String(this.yearInput));

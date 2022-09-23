@@ -60,5 +60,7 @@
   </div>
 </div>
 
+
+<!-- Change the text depending on the difference being in the future or past -->
 <h1 *ngIf="dateDifference >= 0" class="dateDifference">{{selectedMonth}}/{{selectedDay}}/{{yearInput}} is {{ math.abs(math.floor(dateDifference)) }} day(s) from now</h1>
 <h1  *ngIf="dateDifference < 0" class="dateDifference">{{selectedMonth}}/{{selectedDay}}/{{yearInput}} was {{ math.abs(math.floor(dateDifference)) }} day(s) ago</h1>
