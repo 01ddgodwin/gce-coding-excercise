@@ -59,7 +59,7 @@ input {
   text-align: center;
 }
 
-@media only screen and (min-width: 769px){
+@media only screen and (min-width: 790px){
   .container {
     margin: 0 auto;
     width: 90vw;
@@ -81,6 +81,7 @@ input {
     margin-bottom: .5em;
     font-size: 16px;
     font-family: $font;
+    text-align: left;
   }
 
   select,
